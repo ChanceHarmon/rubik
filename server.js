@@ -1,4 +1,6 @@
 'use strict';
+console.log('testing demo');
+
 
 require('dotenv').config();
 const express = require('express');
