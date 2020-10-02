@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubik</title>
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+
+  <div>
+    <% cube.forEach(plane => { %>
+    <div>
+      <ul id="<%= plane.grid_name %>">
+        <% plane.grid_actual.forEach(location => { %>
+        <li><%= location %></li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <% }) %>
+  </div>
+
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
