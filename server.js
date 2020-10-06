@@ -1,6 +1,4 @@
 'use strict';
-console.log('testing demo');
-
 
 require('dotenv').config();
 const express = require('express');
@@ -11,6 +9,9 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', error => console.error(error))
 app.use(cors());
 const PORT = process.env.PORT;
+app.set('view engine', 'ejs');
+app.use(express.static('./public'))
+app.use(express.urlencoded({ extended: true }))
 
 
 //All the code ....
@@ -18,56 +19,38 @@ const PORT = process.env.PORT;
 //Create an array with 6 sides with colors, and make it a global item
 
 app.get('/', getCube);
+app.post('/testing_form', formInput);
 
 function getCube(request, response) {
-  console.log('hi')
-  let array = [[['green', 'green', 'green'],
-  ['green', 'green', 'green'],
-  ['green', 'green', 'green']
-  ],
-  [['yellow', 'yellow', 'yellow'],
-  ['yellow', 'yellow', 'yellow'],
-  ['yellow', 'yellow', 'yellow'],
-  ],
-  [['red', 'red', 'red'],
-  ['red', 'red', 'red'],
-  ['red', 'red', 'red']
-  ],
-  [['white', 'white', 'white'],
-  ['white', 'white', 'white'],
-  ['white', 'white', 'white']
-  ],
-  [['blue', 'blue', 'blue'],
-  ['blue', 'blue', 'blue'],
-  ['blue', 'blue', 'blue']
-  ],
-  [['orange', 'orange', 'orange'],
-  ['orange', 'orange', 'orange'],
-  ['orange', 'orange', 'orange']
-  ]];
-  console.log(array.toString())
-  let value = array.toString()
-  let sql = `INSERT INTO holy_cube(positions) VALUES ('${array}');`;
-
-  // 'INSERT INTO books(title, author, isbn, image_url, description, bookshelf) VALUES($1, $2, $3, $4, $5, $6) RETURNING id;';
-
-
-
-
-
+  let sql = `SELECT * FROM holy_cube;`;
   client.query(sql)
-    .then(() => {
-      let sql = 'SELECT * FROM holy_cube;';
-      client.query(sql)
+    .then(result => {
+      let grid = result.rows.map(row => {
+        let sql = `SELECT * FROM ${row.cube_side};`;
+        return client.query(sql)
+      })
+      Promise.all(grid)
         .then(result => {
-          console.log('61', result)
-          let grid = result.rows[0].positions
-          console.log(grid)
-          console.log(typeof grid)
+          let aggArray = result.map(value => value.rows);
+          console.log(aggArray)
+          response.status(200).render('index', { cube: aggArray })
         })
-    })
-
+    }).catch('error', error => console.error(error))
 }
+
+function formInput(request, response) {
+  console.log(request.body)
+}
+
+
+
+//generic prob, i need to make sure that the array from selecting the cube returns before I can reference the values to loop over, 
+//then I need to figure outt how to make it wait for the next call of looping through each db callllll......
+// }).then(() => {
+//   Promise.all(cubeArray).then(result => {
+//     console.log(result)
+//   })
+
 
 
 
