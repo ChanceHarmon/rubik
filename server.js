@@ -142,3 +142,6 @@ client.connect()
       console.log(`${PORT} is rockin...`)
     })
   })
+
+
+  //Saving this before refactor just in case I need to refelect on this later in my career :)
