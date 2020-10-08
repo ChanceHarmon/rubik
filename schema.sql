@@ -62,29 +62,29 @@ CREATE TABLE rear(
   FOREIGN KEY (face_id) REFERENCES holy_cube (id)
 );
 
-INSERT INTO top (row, positions, face_id) VALUES('top', 'orange,orange,orange', 1);
-INSERT INTO top (row, positions, face_id) VALUES('middle', 'orange,orange,orange', 1);
-INSERT INTO top (row, positions, face_id) VALUES('bottom', 'orange,orange,orange', 1);
+INSERT INTO top (row, positions, face_id) VALUES('top', 'orange:00,orange:01,orange:02', 1);
+INSERT INTO top (row, positions, face_id) VALUES('middle', 'orange:10,orange:11,orange:12', 1);
+INSERT INTO top (row, positions, face_id) VALUES('bottom', 'orange:20,orange:21,orange:22', 1);
 
-INSERT INTO left_hand (row, positions, face_id) VALUES('top', 'green,green,green', 2);
-INSERT INTO left_hand (row, positions, face_id) VALUES('middle', 'green,green,green', 2);
-INSERT INTO left_hand (row, positions, face_id) VALUES('bottom', 'green,green,green', 2);
+INSERT INTO left_hand (row, positions, face_id) VALUES('top', 'green:00,green:01,green:02', 2);
+INSERT INTO left_hand (row, positions, face_id) VALUES('middle', 'green:10,green:11,green:12', 2);
+INSERT INTO left_hand (row, positions, face_id) VALUES('bottom', 'green:20,green:21,green:22', 2);
 
-INSERT INTO face (row, positions, face_id) VALUES('top', 'white,white,white', 3);
-INSERT INTO face (row, positions, face_id) VALUES('middle', 'white,white,white', 3);
-INSERT INTO face (row, positions, face_id) VALUES('bottom', 'white,white,white', 3);
+INSERT INTO face (row, positions, face_id) VALUES('top', 'white:00,white:01,white:02', 3);
+INSERT INTO face (row, positions, face_id) VALUES('middle', 'white:10,white:11,white:12', 3);
+INSERT INTO face (row, positions, face_id) VALUES('bottom', 'white:20,white:21,white:22', 3);
 
-INSERT INTO right_hand (row, positions, face_id) VALUES('top', 'blue,blue,blue', 4);
-INSERT INTO right_hand (row, positions, face_id) VALUES('middle', 'blue,blue,blue', 4);
-INSERT INTO right_hand (row, positions, face_id) VALUES('bottom', 'blue,blue,blue', 4);
+INSERT INTO right_hand (row, positions, face_id) VALUES('top', 'blue:00,blue:01,blue:02', 4);
+INSERT INTO right_hand (row, positions, face_id) VALUES('middle', 'blue:10,blue:11,blue:12', 4);
+INSERT INTO right_hand (row, positions, face_id) VALUES('bottom', 'blue:20,blue:21,blue:22', 4);
 
-INSERT INTO bottom (row, positions, face_id) VALUES('top', 'red,red,red', 5);
-INSERT INTO bottom (row, positions, face_id) VALUES('middle', 'red,red,red', 5);
-INSERT INTO bottom (row, positions, face_id) VALUES('bottom', 'red,red,red', 5);
+INSERT INTO bottom (row, positions, face_id) VALUES('top', 'red:00,red:01,red:02', 5);
+INSERT INTO bottom (row, positions, face_id) VALUES('middle', 'red:10,red:11,red:12', 5);
+INSERT INTO bottom (row, positions, face_id) VALUES('bottom', 'red:20,red:21,red:22', 5);
 
-INSERT INTO rear (row, positions, face_id) VALUES('top', 'yellow,yellow,yellow', 6);
-INSERT INTO rear (row, positions, face_id) VALUES('middle', 'yellow,yellow,yellow', 6);
-INSERT INTO rear (row, positions, face_id) VALUES('bottom', 'yellow,yellow,yellow', 6);
+INSERT INTO rear (row, positions, face_id) VALUES('top', 'yellow:00,yellow:01,yellow:02', 6);
+INSERT INTO rear (row, positions, face_id) VALUES('middle', 'yellow:10,yellow:11,yellow:12', 6);
+INSERT INTO rear (row, positions, face_id) VALUES('bottom', 'yellow:20,yellow:21,yellow:22', 6);
 
 SELECT * FROM top JOIN holy_cube ON top.face_id = holy_cube.id;
 SELECT * FROM left_hand JOIN holy_cube ON left_hand.face_id = holy_cube.id;

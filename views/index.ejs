@@ -18,9 +18,10 @@
     <div id="gridFace_<%= face[0].face_id %>" class="face_layout">
       <% face.forEach( grid => { %>
       <% let position = grid.positions.split(','); %>
-      <div class="<%= grid.row %>_left <%= position[0] %> item_layout"></div>
-      <div class="<%= grid.row %>_center <%= position[0] %> item_layout"></div>
-      <div class="<%= grid.row %>_right <%= position[0] %> item_layout"></div>
+      <% console.log('front split', position[0].split(':')[0])%>
+      <div class="<%= grid.row %>_left <%= position[0].split(':')[0] %> item_layout"></div>
+      <div class="<%= grid.row %>_center <%= position[1].split(':')[0] %> item_layout"></div>
+      <div class="<%= grid.row %>_right <%= position[2].split(':')[0] %> item_layout"></div>
 
       <% }) %>
     </div>
