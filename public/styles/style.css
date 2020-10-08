@@ -30,6 +30,7 @@
 #gridFace_2{
   grid-column: 1/2;
   grid-row: 2/3;
+  transform: rotate(-90deg)
 }
 #gridFace_3{
   grid-column: 2/3;
@@ -38,14 +39,17 @@
 #gridFace_4{
   grid-column: 3/4;
   grid-row: 2/3;
+  transform: rotate(90deg)
 }
 #gridFace_5{
   grid-column: 2/3;
   grid-row: 3/4;
+  transform: rotate(180deg)
 }
 #gridFace_6{
   grid-column: 2/3;
   grid-row: 4/5;
+  transform: rotate(-180deg)
 }
 
 #movement_options{
