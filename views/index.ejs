@@ -12,13 +12,12 @@
 <body>
   <div id="mainCube">
     <% let currentGrid = {} %>
+
     <% cube.forEach( face => { %>
-    <% console.log('front end face', face) %>
     <% currentGrid.color = 0; %>
     <div id="gridFace_<%= face[0].face_id %>" class="face_layout">
       <% face.forEach( grid => { %>
       <% let position = grid.positions.split(','); %>
-      <% console.log('front split', position[0].split(':')[0])%>
       <div class="<%= grid.row %>_left <%= position[0].split(':')[0] %> item_layout"></div>
       <div class="<%= grid.row %>_center <%= position[1].split(':')[0] %> item_layout"></div>
       <div class="<%= grid.row %>_right <%= position[2].split(':')[0] %> item_layout"></div>
@@ -34,17 +33,17 @@
         <label for="cube_face_selector">Select which Cube Face you want to Rotate. A cube's Face will always be the
           determined by the very center's color of each face.</label>
         <div id="cube_face_selector">
-          <input type="radio" id="orange" name="cube_color" value="orange">
+          <input type="radio" id="orange" name="cube_side" value="orange">
           <label for="orange">Orange</label>
-          <input type="radio" id="green" name="cube_color" value="green">
+          <input type="radio" id="green" name="cube_side" value="green">
           <label for="green">Green</label>
-          <input type="radio" id="white" name="cube_color" value="white">
+          <input type="radio" id="white" name="cube_side" value="white">
           <label for="white">White</label>
-          <input type="radio" id="blue" name="cube_color" value="blue">
+          <input type="radio" id="blue" name="cube_side" value="blue">
           <label for="blue">Blue</label>
-          <input type="radio" id="red" name="cube_color" value="red">
+          <input type="radio" id="red" name="cube_side" value="red">
           <label for="red">Red</label>
-          <input type="radio" id="yellow" name="cube_color" value="yellow">
+          <input type="radio" id="yellow" name="cube_side" value="yellow">
           <label for="yellow">Yellow</label>
         </div>
 

@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const pg = require('pg');
+const e = require('express');
 const PORT = process.env.PORT;
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', error => console.error(error));
@@ -28,7 +29,6 @@ function getCube(request, response) {
       Promise.all(grid)
         .then(result => {
           let aggArray = result.map(value => value.rows);
-          console.log(aggArray)
           response.status(200).render('index', { cube: aggArray })
         })
     }).catch('error', error => console.error(error))
@@ -51,7 +51,6 @@ const rotate = matrix => {
       matrix[i][matrix.length - 1 - j] = pivot;
     }
   }
-  console.log('matrix', matrix)
   return matrix
 };
 
@@ -59,17 +58,24 @@ function formInput(request, response) {
 
   let travelLog = {};
   let faceValue;
+  let equationArray = ['orange', 'green', 'white', 'blue', 'red', 'yellow'];
 
-  if (request.body.cube_color === 'white') {
-    faceValue = 'face';
+  let sql;
+  let sql2;
+  let sql3;
+  let sql4;
+  let sql5;
+
+  if (request.body.cube_side === 'white') {
+    console.log('in if statement')
+    faceValue = 'white';
     travelLog.table = faceValue;
+    sql = `SELECT * FROM ${faceValue};`;
+    sql2 = `SELECT * FROM ${equationArray[0]} WHERE id=1;`;
+    sql3 = `SELECT * FROM ${equationArray[1]} WHERE id=1;`;
+    sql4 = `SELECT * FROM ${equationArray[3]} WHERE id=1;`;
+    sql5 = `SELECT * FROM ${equationArray[4]} WHERE id=1;`;
   }
-
-  let sql = `SELECT * FROM ${faceValue};`;
-  let sql2 = `SELECT * FROM top;`;
-  let sql3 = `SELECT * FROM left_hand;`;
-  let sql4 = `SELECT * FROM right_hand;`;
-  let sql5 = `SELECT * FROM bottom;`;
 
   client.query(sql)
     .then(results => {
@@ -79,22 +85,22 @@ function formInput(request, response) {
     }).then(() => {
       client.query(sql2)
         .then(results => {
-          travelLog.top = results.rows[0].positions.split(',')
+          travelLog.orange = results.rows[0].positions.split(',')
         })
         .then(() => {
           client.query(sql3)
             .then(results => {
-              travelLog.left_hand = results.rows[0].positions.split(',')
+              travelLog.green = results.rows[0].positions.split(',')
             })
             .then(() => {
               client.query(sql4)
                 .then(results => {
-                  travelLog.right_hand = results.rows[0].positions.split(',')
+                  travelLog.blue = results.rows[0].positions.split(',')
                 })
                 .then(() => {
                   client.query(sql5)
                     .then(results => {
-                      travelLog.bottom = results.rows[0].positions.split(',')
+                      travelLog.red = results.rows[0].positions.split(',')
                     })
                     .then(() => {
                       let num = 1;
@@ -106,16 +112,16 @@ function formInput(request, response) {
                         })
                       }
                     }).then(() => {
-                      let sql = `UPDATE top SET positions='${travelLog.left_hand}' WHERE id=1;`;
+                      let sql = `UPDATE orange SET positions='${travelLog.green}' WHERE id=1;`;
                       client.query(sql)
                         .then(() => {
-                          let sql = `UPDATE right_hand SET positions='${travelLog.top}' WHERE id=1;`;
+                          let sql = `UPDATE blue SET positions='${travelLog.orange}' WHERE id=1;`;
                           client.query(sql)
                             .then(() => {
-                              let sql = `UPDATE bottom SET positions='${travelLog.right_hand}' WHERE id=1;`;
+                              let sql = `UPDATE red SET positions='${travelLog.blue}' WHERE id=1;`;
                               client.query(sql)
                                 .then(() => {
-                                  let sql = `UPDATE left_hand SET positions='${travelLog.bottom}' WHERE id=1;`;
+                                  let sql = `UPDATE green SET positions='${travelLog.red}' WHERE id=1;`;
                                   client.query(sql)
                                     .then(() => {
                                       response.status(200).redirect('/');
