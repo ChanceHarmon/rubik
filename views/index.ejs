@@ -18,14 +18,20 @@
     <div id="gridFace_<%= face[0].face_id %>" class="face_layout">
       <% face.forEach( grid => { %>
       <% let position = grid.positions.split(','); %>
-      <div class="<%= grid.row %>_left <%= position[0].split(':')[0] %> item_layout"></div>
-      <div class="<%= grid.row %>_center <%= position[1].split(':')[0] %> item_layout"></div>
-      <div class="<%= grid.row %>_right <%= position[2].split(':')[0] %> item_layout"></div>
+      <div class="<%= grid.row %>_left <%= position[0].split(':')[0] %> item_layout"><%= position[0] %></div>
+      <div class="<%= grid.row %>_center <%= position[1].split(':')[0] %> item_layout"><%= position[1] %></div>
+      <div class="<%= grid.row %>_right <%= position[2].split(':')[0] %> item_layout"><%= position[2] %></div>
 
       <% }) %>
     </div>
     <% }) %>
 
+    <div id="holyCubeReset">
+      <form action="/reset" method="GET">
+        <h2>Reset the Cube to Solved</h2>
+        <input type="submit">
+      </form>
+    </div>
 
     <div id="movement">
       <form action="/testing_form" method="POST">

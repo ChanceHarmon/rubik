@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
 #mainCube{
   height: 100vh;
   display: grid;
@@ -26,11 +27,12 @@
 #gridFace_1{
   grid-column: 2/3;
   grid-row: 1/2;
+  transform: rotate(180deg)
 }
 #gridFace_2{
   grid-column: 1/2;
   grid-row: 2/3;
-  transform: rotate(-90deg)
+  transform: rotate(90deg)
 }
 #gridFace_3{
   grid-column: 2/3;
@@ -39,22 +41,25 @@
 #gridFace_4{
   grid-column: 3/4;
   grid-row: 2/3;
-  transform: rotate(90deg)
+  transform: rotate(-90deg)
 }
 #gridFace_5{
   grid-column: 2/3;
   grid-row: 3/4;
-  transform: rotate(180deg)
 }
 #gridFace_6{
   grid-column: 2/3;
   grid-row: 4/5;
-  transform: rotate(-180deg)
+  /* transform: rotate(180deg) */
 }
 
 #movement_options{
   grid-column: 1/2;
   grid-row: 3/5;
+}
+#holyCubeReset{
+  grid-column: 3/4;
+  grid-row: 1/2
 }
 
 .item_layout{
