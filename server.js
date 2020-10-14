@@ -45,7 +45,7 @@ function getCube(request, response) {
       Promise.all(grid)
         .then(result => {
           let aggArray = result.map(value => value.rows);
-          console.log(aggArray)
+          console.log('agg array in server', aggArray)
           let test2 = aggArray.map(item => item.map(() => item.sort((a, b) => a.id - b.id)));
 
           // test2.forEach(item => {
