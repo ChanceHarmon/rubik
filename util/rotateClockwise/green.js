@@ -39,6 +39,7 @@ module.exports = function rotateGreenClockwise(str) {
       client.query(sql2)
         .then(results => {
           console.log('orange sql results', results)
+          console.log('orange sql result1 with travel log array', travelLogArray)
           travelLog.og_orange = results.rows;
           travelLogArray.push(travelLog.og_orange)
           travelLog.orange = [results.rows[0].positions.split(',')[0], results.rows[1].positions.split(',')[0], results.rows[2].positions.split(',')[0]]
@@ -79,16 +80,16 @@ module.exports = function rotateGreenClockwise(str) {
                         })
                       }
                     }).then(() => {
-                      console.log('the travel log array', travelLogArray)
-                      let sql = `UPDATE orange SET positions='${travelLogArray[0][0].positions.split(',')[0]},${travelLogArray[0][0].positions.split(',')[1]},${travelLogArray[1][0].positions.split(',')[2]}' WHERE id=1;`;
+                      console.log('the travel log array bfore first update', travelLogArray, 'and travel log obj', travelLog)
+                      let sql = `UPDATE orange SET positions='${travelLogArray[0][0].positions.split(',')[0]},${travelLogArray[0][0].positions.split(',')[1]},${travelLogArray[1][2].positions.split(',')[0]}' WHERE id=1;`;
                       console.log('first orange sql', sql)
                       client.query(sql)
                         .then(() => {
-                          let sql = `UPDATE orange SET positions='${travelLogArray[0][1].positions.split(',')[0]},${travelLogArray[0][1].positions.split(',')[1]},${travelLogArray[1][1].positions.split(',')[2]}' WHERE id=2;`;
+                          let sql = `UPDATE orange SET positions='${travelLogArray[0][1].positions.split(',')[0]},${travelLogArray[0][1].positions.split(',')[1]},${travelLogArray[1][1].positions.split(',')[0]}' WHERE id=2;`;
                           console.log('second 0range sql', sql)
                           client.query(sql)
                             .then(() => {
-                              let sql = `UPDATE orange SET positions='${travelLogArray[0][2].positions.split(',')[0]},${travelLogArray[0][2].positions.split(',')[1]},${travelLogArray[1][2].positions.split(',')[2]}' WHERE id=3;`;
+                              let sql = `UPDATE orange SET positions='${travelLogArray[0][2].positions.split(',')[0]},${travelLogArray[0][2].positions.split(',')[1]},${travelLogArray[1][0].positions.split(',')[0]}' WHERE id=3;`;
                               console.log('orange sql 3', sql)
                               client.query(sql)
 
@@ -118,24 +119,26 @@ module.exports = function rotateGreenClockwise(str) {
                                                       let sql = `UPDATE white SET positions='${travelLogArray[0][0].positions.split(',')[2]},${travelLogArray[2][2].positions.split(',')[1]},${travelLogArray[2][2].positions.split(',')[2]}' WHERE id=3;`;
                                                       console.log('white sql 3', sql)
                                                       client.query(sql)
-                                                    })
-                                                  //yuck, big time issue with return order and .then chain, barf
-                                                })
-                                                .then(() => {
-                                                  let sql = `UPDATE red SET positions='${travelLogArray[2][0].positions.split(',')[0]},${travelLogArray[3][0].positions.split(',')[1]},${travelLogArray[3][0].positions.split(',')[2]}' WHERE id=1;`;
-                                                  console.log('red sql 1', sql)
-                                                  client.query(sql)
-                                                    .then(() => {
-                                                      let sql = `UPDATE red SET positions='${travelLogArray[2][1].positions.split(',')[0]},${travelLogArray[3][1].positions.split(',')[1]},${travelLogArray[3][1].positions.split(',')[2]}' WHERE id=2;`;
-                                                      ('red sql 2', sql)
-                                                      client.query(sql)
+
+                                                        //yuck, big time issue with retnourn order and .then chain, barf
+
                                                         .then(() => {
-                                                          let sql = `UPDATE red SET positions='${travelLogArray[2][2].positions.split(',')[0]},${travelLogArray[3][2].positions.split(',')[1]},${travelLogArray[3][2].positions.split(',')[2]}' WHERE id=3;`;
-                                                          ('red sql 3', sql)
+                                                          let sql = `UPDATE red SET positions='${travelLogArray[2][0].positions.split(',')[0]},${travelLogArray[3][0].positions.split(',')[1]},${travelLogArray[3][0].positions.split(',')[2]}' WHERE id=1;`;
+                                                          console.log('red sql 1', sql)
                                                           client.query(sql)
-                                                        })
-                                                        .then(() => {
-                                                          return travelLog;
+                                                            .then(() => {
+                                                              let sql = `UPDATE red SET positions='${travelLogArray[2][1].positions.split(',')[0]},${travelLogArray[3][1].positions.split(',')[1]},${travelLogArray[3][1].positions.split(',')[2]}' WHERE id=2;`;
+                                                              console.log('red sql 2', sql)
+                                                              client.query(sql)
+                                                                .then(() => {
+                                                                  let sql = `UPDATE red SET positions='${travelLogArray[2][2].positions.split(',')[0]},${travelLogArray[3][2].positions.split(',')[1]},${travelLogArray[3][2].positions.split(',')[2]}' WHERE id=3;`;
+                                                                  console.log('red sql 3', sql)
+                                                                  client.query(sql)
+                                                                    .then(() => {
+                                                                      return travelLog;
+                                                                    })
+                                                                })
+                                                            })
                                                         })
                                                     })
                                                 })
