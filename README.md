@@ -10,14 +10,13 @@
   -- Current Version 0.2.0
   
 ## Current Status
-  -- Two Dimensional layout
+  -- Two Dimensional layout<br>
   -- White can be Rotated Clockwise
   -- Green can be Rotated Clockwise
   -- Reset Button resets the Cube in the database.
   
 ## How to Start
-  -- With Postgres, create a database for the app to intereact with
-  <br>
+  -- With Postgres, create a database for the app to intereact with<br>
   -- Create a .env file at the root of this repository
   -- It needs to have a key of DATABASE_URL=your postgres url/name of database you created for this project
   -- Optionally, you can add a key of PORT=Your favorite local port number
