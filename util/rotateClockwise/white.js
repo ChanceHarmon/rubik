@@ -22,38 +22,44 @@ module.exports = function rotateWhiteClockwise(str) {
   faceValue = str;
   travelLog.table = faceValue;
   sql = `SELECT * FROM ${faceValue};`;
-  sql2 = `SELECT * FROM ${equationArray[0]} WHERE id=1;`;
-  sql3 = `SELECT * FROM ${equationArray[1]} WHERE id=1;`;
-  sql4 = `SELECT * FROM ${equationArray[3]} WHERE id=1;`;
-  sql5 = `SELECT * FROM ${equationArray[4]} WHERE id=1;`;
+  sql2 = `SELECT * FROM ${equationArray[0]};`;
+  sql3 = `SELECT * FROM ${equationArray[1]};`;
+  sql4 = `SELECT * FROM ${equationArray[3]};`;
+  sql5 = `SELECT * FROM ${equationArray[4]};`;
 
   client.query(sql)
     .then(results => {
       let faceArray = results.rows.map(item => item.positions.split(','));
+      console.log('rotate white, face before rotate', faceArray )
       rotate(faceArray);
+      console.log('rotate white, face after rotate', faceArray)
       travelLog.face_array = faceArray;
     }).then(() => {
       client.query(sql2)
         .then(results => {
           travelLog.orange = results.rows[0].positions.split(',')
+          console.log('in white, orange', travelLog)
         })
         .then(() => {
           client.query(sql3)
             .then(results => {
               travelLog.green = results.rows[0].positions.split(',')
+              console.log('in white, green', travelLog)
             })
             .then(() => {
               client.query(sql4)
                 .then(results => {
                   travelLog.blue = results.rows[0].positions.split(',')
+                  console.log('in white, blue', travelLog)
                 })
                 .then(() => {
                   client.query(sql5)
                     .then(results => {
                       travelLog.red = results.rows[0].positions.split(',')
+                      console.log('in white, red', travelLog)
                     })
                     .then(() => {
-                      console.log(travelLog)
+                      console.log('travel log before loop',travelLog)
                       let num = 1;
                       while (num < 3) {
                         travelLog.face_array.forEach(item => {
@@ -64,6 +70,7 @@ module.exports = function rotateWhiteClockwise(str) {
                         })
                       }
                     }).then(() => {
+                      console.log('rotate white, before updates', travelLog)
                       let sql = `UPDATE orange SET positions='${travelLog.green}' WHERE id=1;`;
                       client.query(sql)
                         .then(() => {

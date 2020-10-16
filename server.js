@@ -45,8 +45,10 @@ function getCube(request, response) {
       Promise.all(grid)
         .then(result => {
           let aggArray = result.map(value => value.rows);
-          console.log('agg array in server', aggArray)
-          let test2 = aggArray.map(item => item.map(() => item.sort((a, b) => a.id - b.id)));
+          aggArray.sort((a,b) => a.id - b.id)
+          // let test2 = aggArray.map(item => item.map(() => item.sort((a, b) => a.id - b.id)));
+          console.log('soorted agg array in server', aggArray)
+          //console.log('soorted test2 in server', test2)
 
           // test2.forEach(item => {
           //   console.log(item)
@@ -57,13 +59,6 @@ function getCube(request, response) {
     }).catch('error', error => console.error(error))
 }
 
-/* Big story is, formInput is already huge and ugly. Several refactors need to take place. Equation array may need to become global of some kind, we might also want to think about refering to global array positions at [i[0-5]] instead of green blue orange etc. 
-One thing to watch for when we start a new color roll(green is the first), we had the issue with sql making the array positions in a different order because it nicely moves the last thing we altered to the bottom of the print list, hence why we grabbed them by id.
-
-A big one is, i would like to call a seperate function for each color. I am guessing the string of face selected needs to be passed, but also need to work out how the travel log works and where it is defined....
-
-//I think this works now, going to try with green
-*/
 
 function delay() {
   return new Promise(resolve => setTimeout(resolve, 500));
