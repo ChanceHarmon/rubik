@@ -35,6 +35,7 @@ module.exports = function rotateWhiteClockwise(str) {
     .then(results => {
       let presort = results.rows.sort((a, b) => a.id - b.id)
       let faceArray = presort.map(item => item.positions.split(','));
+      rotate(faceArray);
       travelLog.face_array = faceArray;
     }).then(() => {
       client.query(sql2)
