@@ -14,8 +14,6 @@
 
 
     <% cube.forEach( face => { %>
-    <% console.log('front end', face) %>
-    <% face.sort((a,b) => a.id - b.id) %>
     <div id="gridFace_<%= face[0].face_id %>" class="face_layout">
       <% face.forEach( grid => { %>
       <% let position = grid.positions.split(','); %>

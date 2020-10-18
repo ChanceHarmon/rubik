@@ -44,16 +44,11 @@ function getCube(request, response) {
       })
       Promise.all(grid)
         .then(result => {
-          let aggArray = result.map(value => value.rows);
-          aggArray.sort((a,b) => a.id - b.id)
-          // let test2 = aggArray.map(item => item.map(() => item.sort((a, b) => a.id - b.id)));
+          let aggArray = result.map(value => value.rows)
+          aggArray.forEach(color => color.sort((a,b) => a.id - b.id));
+         
           console.log('soorted agg array in server', aggArray)
-          //console.log('soorted test2 in server', test2)
-
-          // test2.forEach(item => {
-          //   console.log(item)
-          // })
-          // console.log('testing sort', aggArray.map(item => item.map(() => item.sort((a, b) => a.id - b.id))))
+       
           response.status(200).render('index', { cube: aggArray })
         })
     }).catch('error', error => console.error(error))
