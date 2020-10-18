@@ -45,10 +45,7 @@ function getCube(request, response) {
       Promise.all(grid)
         .then(result => {
           let aggArray = result.map(value => value.rows)
-          aggArray.forEach(color => color.sort((a,b) => a.id - b.id));
-         
-          console.log('soorted agg array in server', aggArray)
-       
+          aggArray.forEach(color => color.sort((a, b) => a.id - b.id));
           response.status(200).render('index', { cube: aggArray })
         })
     }).catch('error', error => console.error(error))
@@ -62,37 +59,22 @@ async function delayedLog() {
   await delay();
 }
 
-// let travelLog = {};
-// let faceValue;
-// let equationArray = ['orange', 'green', 'white', 'blue', 'red', 'yellow'];
-
-// let sql;
-// let sql2;
-// let sql3;
-// let sql4;
-// let sql5;
-
 async function formInput(request, response) {
 
   let { cube_side, rotate_roll, face_clock } = request.body;
   if (cube_side === 'white') {
-    console.log('in if statement')
     await delayedLog(rotateWhiteClockwise(cube_side)).then(() => {
       response.status(200).redirect('/')
     })
   } else if (cube_side === 'green') {
-    console.log('in if statement')
     await delayedLog(rotateGreenClockwise(cube_side)).then(() => {
       response.status(200).redirect('/')
     })
-
   }
   else if (cube_side === 'orange') {
-    console.log('in if statement')
     await delayedLog(rotateOrangeClockwise(cube_side)).then(() => {
       response.status(200).redirect('/')
     })
-
   }
 }
 
