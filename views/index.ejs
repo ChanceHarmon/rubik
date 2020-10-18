@@ -11,10 +11,9 @@
 
 <body>
   <div id="mainCube">
-    <% let currentGrid = {} %>
+
 
     <% cube.forEach( face => { %>
-    <% currentGrid.color = 0; %>
     <div id="gridFace_<%= face[0].face_id %>" class="face_layout">
       <% face.forEach( grid => { %>
       <% let position = grid.positions.split(','); %>
