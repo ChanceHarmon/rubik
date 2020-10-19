@@ -8,8 +8,6 @@ client.connect()
 
 const rotate = require('../../util/rotateClockwiseAlgo');
 
-
-// Starting based off of rotate white clockwise for a start point
 module.exports = function rotateRedClockwise(str) {
 
   let travelLog = {};
