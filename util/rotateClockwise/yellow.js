@@ -7,8 +7,8 @@ client.on('error', err => console.error(err));
 client.connect()
 
 const rotate = require('../../util/rotateClockwiseAlgo');
-
-module.exports = function rotateWhiteClockwise(str) {
+//based off of redd at the start
+module.exports = function rotateYellowClockwise(str) {
 
   let travelLog = {};
   let faceValue;
@@ -24,10 +24,10 @@ module.exports = function rotateWhiteClockwise(str) {
   faceValue = str;
   travelLog.table = faceValue;
   sql = `SELECT * FROM ${faceValue};`;
-  sql2 = `SELECT * FROM ${equationArray[0]};`;
+  sql2 = `SELECT * FROM ${equationArray[4]};`;
   sql3 = `SELECT * FROM ${equationArray[1]};`;
   sql4 = `SELECT * FROM ${equationArray[3]};`;
-  sql5 = `SELECT * FROM ${equationArray[4]};`;
+  sql5 = `SELECT * FROM ${equationArray[0]};`;
 
   client.query(sql)
     .then(results => {
@@ -38,8 +38,8 @@ module.exports = function rotateWhiteClockwise(str) {
     }).then(() => {
       client.query(sql2)
         .then(results => {
-          travelLog.og_orange = results.rows.sort((a, b) => a.id - b.id)
-          travelLogArray.push(travelLog.og_orange)
+          travelLog.og_red = results.rows.sort((a, b) => a.id - b.id)
+          travelLogArray.push(travelLog.og_red)
         })
         .then(() => {
           client.query(sql3)
@@ -56,8 +56,8 @@ module.exports = function rotateWhiteClockwise(str) {
                 .then(() => {
                   client.query(sql5)
                     .then(results => {
-                      travelLog.og_red = results.rows.sort((a, b) => a.id - b.id)
-                      travelLogArray.push(travelLog.og_red)
+                      travelLog.og_orange = results.rows.sort((a, b) => a.id - b.id)
+                      travelLogArray.push(travelLog.og_orange)
                     })
                     .then(() => {
                       let num = 1;
@@ -69,17 +69,16 @@ module.exports = function rotateWhiteClockwise(str) {
                         })
                       }
                     }).then(() => {
-                      console.log('travel log array in white', travelLogArray)
-                      let sql = `UPDATE orange SET positions='${travelLogArray[1][0].positions.split(',')[0]},${travelLogArray[1][0].positions.split(',')[1]},${travelLogArray[1][0].positions.split(',')[2]}' WHERE id=1;`;
+                      let sql = `UPDATE red SET positions='${travelLogArray[1][2].positions.split(',')[2]},${travelLogArray[1][1].positions.split(',')[2]},${travelLogArray[1][0].positions.split(',')[2]}' WHERE id=3;`;
                       client.query(sql)
                         .then(() => {
-                          let sql = `UPDATE blue SET positions='${travelLogArray[0][0].positions.split(',')[0]},${travelLogArray[0][0].positions.split(',')[1]},${travelLogArray[0][0].positions.split(',')[2]}' WHERE id=1;`;
+                          let sql = `UPDATE green SET positions='${travelLogArray[3][2].positions.split(',')[0]},${travelLogArray[3][2].positions.split(',')[1]},${travelLogArray[3][2].positions.split(',')[2]}' WHERE id=3;`;
                           client.query(sql)
                             .then(() => {
-                              let sql = `UPDATE red SET positions='${travelLogArray[2][0].positions.split(',')[0]},${travelLogArray[2][0].positions.split(',')[1]},${travelLogArray[2][0].positions.split(',')[2]}' WHERE id=1;`;
+                              let sql = `UPDATE blue SET positions='${travelLogArray[0][2].positions.split(',')[0]},${travelLogArray[0][2].positions.split(',')[1]},${travelLogArray[0][2].positions.split(',')[2]}' WHERE id=3;`;
                               client.query(sql)
                                 .then(() => {
-                                  let sql = `UPDATE green SET positions='${travelLogArray[3][0].positions.split(',')[0]},${travelLogArray[3][0].positions.split(',')[1]},${travelLogArray[3][0].positions.split(',')[2]}' WHERE id=1;`;
+                                  let sql = `UPDATE orange SET positions='${travelLogArray[2][0].positions.split(',')[0]},${travelLogArray[2][1].positions.split(',')[0]},${travelLogArray[2][2].positions.split(',')[0]}' WHERE id=3;`;
                                   client.query(sql)
                                     .then(() => {
                                       return travelLog;

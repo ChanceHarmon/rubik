@@ -26,6 +26,7 @@ const rotateGreenClockwise = require('./util/rotateClockwise/green');
 const rotateOrangeClockwise = require('./util/rotateClockwise/orange');
 const rotateBlueClockwise = require('./util/rotateClockwise/blue');
 const rotateRedClockwise = require('./util/rotateClockwise/red');
+const rotateYellowClockwise = require('./util/rotateClockwise/yellow');
 
 //Routes
 
@@ -85,6 +86,11 @@ async function formInput(request, response) {
   }
   else if (cube_side === 'red') {
     await delayedLog(rotateRedClockwise(cube_side)).then(() => {
+      response.status(200).redirect('/')
+    })
+  }
+  else if (cube_side === 'yellow') {
+    await delayedLog(rotateYellowClockwise(cube_side)).then(() => {
       response.status(200).redirect('/')
     })
   }
