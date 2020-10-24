@@ -7,7 +7,7 @@
   -- I am sure there is a nice NPM library out there that wraps up all the math and logic to make this work, but why not do it the long way?
   
 ## Version
-  -- Current Version 0.6.0
+  -- Current Version 0.6.1
   
 ## Current Status
   -- Two Dimensional layout<br>
@@ -34,9 +34,9 @@
 ## Current Tickets
   -- Create Counter Clockwise Function without using .reverse() method.<br>
   -- Streamline the SQL statements. Either narrowing the promise chain down to a clean Promise.all, or combining the current statements to cut down on the amount of querys to the database.<br>
-  -- Get a random cube! Right now it currently defaults to a solved cube on load. It retains the moves you make via SQL, but you would have to purpoasely get yourself lost in a cube to begin to properly solve it.<br>
+  -- Get a random cube! Right now it currently defaults to a solved cube on load. It retains the moves you make via SQL, but you would have to purposely get yourself lost in a cube to begin to properly solve it.<br>
   -- Users. Incorporate the ability to bring up your current cube at any location, keep track of how may solves, possibly also a timer for high score purposes.<br>
-  -- Update the radio buttons. Remove column number options. Add option for 180 degree turns.<br>
+  -- Add option for 180 degree turns.<br>
   -- Eventually this needs to become a cube, not just a big grid that takes imagination and a lot of familiarity of a physical cube to figure out what all is happening as the moves are made.<br>
  
   
