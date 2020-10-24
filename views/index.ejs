@@ -36,7 +36,7 @@
       <form action="/testing_form" method="POST">
         <h2>Select your next move!</h2>
         <label for="cube_face_selector">Select which Cube Face you want to Rotate. A cube's Face will always be the
-          determined by the very center's color of each face.</label>
+          center color of each face.</label>
         <div id="cube_face_selector">
           <input type="radio" id="orange" name="cube_side" value="orange">
           <label for="orange">Orange</label>
@@ -53,33 +53,11 @@
         </div>
 
         <div id="movement_options">
-          <h3>Select the Move Options</h3>
-          <input type="radio" id="rotate_face" name="rotate_roll" value="rotate_face">
-          <label for="rotate_face">Rotate a Face Clockwise/Counter-Clockwise</label>
-          <input type="radio" id="roll_col_row" name="rotate_roll" value="roll_col_row">
-          <label for="roll_col_row">Roll a Column or Row of the Face</label>
-          <input type="radio" id="rotate_clockwise" name="face_clock" value="rotate_clockwise">
-          <label for="rotate_clockwise">Clockwise</label>
-          <input type="radio" id="rotate_counter_clockwise" name="face_clock" value="rotate_counter_clockwise">
-          <label for="rotate_counter_clockwise">Counter-Clockwise</label>
-          <input type="radio" id="col_v_row" name="col_row_selector" value="col_v_row">
-          <label for="col_v_row">Column</label>
-          <input type="radio" id="row_v_col" name="col_row_selector" value="row_v_col">
-          <label for="row_v_col">Row</label>
-          <input type="radio" id="selected_one" name="selcted_row_col" value="selected_one">
-          <label for="selected_one">One</label>
-          <input type="radio" id="selected_two" name="selcted_row_col" value="selected_two">
-          <label for="selected_two">Two</label>
-          <input type="radio" id="selected_three" name="selcted_row_col" value="selected_three">
-          <label for="selected_three">Three</label>
-          <input type="radio" id="left" name="row_direction" value="left">
-          <label for="left">Left</label>
-          <input type="radio" id="right" name="row_direction" value="right">
-          <label for="right">Right</label>
-          <input type="radio" id="up" name="col_direction" value="up">
-          <label for="up">Up</label>
-          <input type="radio" id="down" name="col_direction" value="down">
-          <label for="down">Down</label>
+          <h3>Select Direction to Rotate</h3>
+          <input type="radio" id="rotate_face_clock" name="rotate_roll" value="rotate_face_clockwise">
+          <label for="rotate_face_clock">Clockwise</label>
+          <input type="radio" id="rotate_face_counter" name="rotate_roll" value="rotate_face_counter_clockwise">
+          <label for="rotate__face_counter">Counter Clockwise</label>
         </div>
         <input type="submit">
       </form>
