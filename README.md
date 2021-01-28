@@ -7,7 +7,7 @@
   -- I am sure there is a nice NPM library out there that wraps up all the math and logic to make this work, but why not do it the long way?
   
 ## Version
-  -- Current Version 0.6.0
+  -- Current Version 0.6.1
   
 ## Current Status
   -- Two Dimensional layout<br>
