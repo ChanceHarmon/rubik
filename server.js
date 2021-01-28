@@ -102,3 +102,5 @@ client.connect()
       console.log(`${PORT} is rockin...`)
     })
   })
+
+  //TODO timer for promise is not slow enough for heroku, probably should figure out why the hell i need it any way, but change it be longer next time
