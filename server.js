@@ -27,6 +27,12 @@ const rotateOrangeClockwise = require('./util/rotateClockwise/orange');
 const rotateBlueClockwise = require('./util/rotateClockwise/blue');
 const rotateRedClockwise = require('./util/rotateClockwise/red');
 const rotateYellowClockwise = require('./util/rotateClockwise/yellow');
+const rotateWhiteCounterClockwise = require('./util/rotateCounter/white');
+const rotateGreenCounterClockwise = require('./util/rotateCounter/green');
+const rotateOrangeCounterClockwise = require('./util/rotateCounter/orange');
+const rotateBlueCounterClockwise = require('./util/rotateCounter/blue');
+const rotateRedCounterClockwise = require('./util/rotateCounter/red');
+const rotateYellowCounterClockwise = require('./util/rotateCounter/yellow');
 
 //Routes
 
@@ -65,34 +71,67 @@ async function delayedLog() {
 async function formInput(request, response) {
 
   let { cube_side, rotate_roll, face_clock } = request.body;
-  if (cube_side === 'white') {
-    await delayedLog(rotateWhiteClockwise(cube_side)).then(() => {
-      response.status(200).redirect('/')
-    })
-  } else if (cube_side === 'green') {
-    await delayedLog(rotateGreenClockwise(cube_side)).then(() => {
-      response.status(200).redirect('/')
-    })
-  }
-  else if (cube_side === 'orange') {
-    await delayedLog(rotateOrangeClockwise(cube_side)).then(() => {
-      response.status(200).redirect('/')
-    })
-  }
-  else if (cube_side === 'blue') {
-    await delayedLog(rotateBlueClockwise(cube_side)).then(() => {
-      response.status(200).redirect('/')
-    })
-  }
-  else if (cube_side === 'red') {
-    await delayedLog(rotateRedClockwise(cube_side)).then(() => {
-      response.status(200).redirect('/')
-    })
-  }
-  else if (cube_side === 'yellow') {
-    await delayedLog(rotateYellowClockwise(cube_side)).then(() => {
-      response.status(200).redirect('/')
-    })
+
+  if (rotate_roll === 'rotate_face_clockwise') {
+    if (cube_side === 'white') {
+      await delayedLog(rotateWhiteClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    } else if (cube_side === 'green') {
+      await delayedLog(rotateGreenClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    }
+    else if (cube_side === 'orange') {
+      await delayedLog(rotateOrangeClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    }
+    else if (cube_side === 'blue') {
+      await delayedLog(rotateBlueClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    }
+    else if (cube_side === 'red') {
+      await delayedLog(rotateRedClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    }
+    else if (cube_side === 'yellow') {
+      await delayedLog(rotateYellowClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    }
+  } else if (rotate_roll === 'rotate_face_counter_clockwise') {
+    if (cube_side === 'white') {
+      await delayedLog(rotateWhiteCounterClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    } else if (cube_side === 'green') {
+      await delayedLog(rotateGreenCounterClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    }
+    else if (cube_side === 'orange') {
+      await delayedLog(rotateOrangeCounterClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    }
+    else if (cube_side === 'blue') {
+      await delayedLog(rotateBlueCounterClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    }
+    else if (cube_side === 'red') {
+      await delayedLog(rotateRedCounterClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    }
+    else if (cube_side === 'yellow') {
+      await delayedLog(rotateYellowCounterClockwise(cube_side)).then(() => {
+        response.status(200).redirect('/')
+      })
+    }
   }
 }
 
