@@ -61,6 +61,11 @@
   grid-column: 3/4;
   grid-row: 1/2
 }
+#toggle-text{
+  grid-column: 3/4;
+  grid-row: 1/2;
+  margin-top: 3em
+}
 
 .item_layout{
   border: 1px solid  silver;

@@ -38,7 +38,7 @@ const rotateYellowCounterClockwise = require('./util/rotateCounter/yellow');
 
 app.get('/', getCube);
 app.get('/reset', reset_cube);
-app.post('/testing_form', formInput);
+app.post('/user_action', formInput);
 
 //The rest of it...
 
