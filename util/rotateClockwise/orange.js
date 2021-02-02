@@ -6,9 +6,9 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', err => console.error(err));
 client.connect()
 
-const rotate = require('../../util/rotateClockwiseAlgo');
+const rotateCounter = require('../../util/rotateCounterClockwiseAlgo');
 
-module.exports = function rotateGreenClockwise(str) {
+module.exports = function rotateGreenCounterClockwise(str) {
   let travelLog = {};
   let faceValue;
   let equationArray = ['orange', 'green', 'white', 'blue', 'red', 'yellow'];
@@ -32,7 +32,7 @@ module.exports = function rotateGreenClockwise(str) {
     .then(results => {
       let presort = results.rows.sort((a, b) => a.id - b.id)
       let faceArray = presort.map(item => item.positions.split(','));
-      rotate(faceArray);
+      rotateCounter(faceArray);
       travelLog.face_array = faceArray;
     }).then(() => {
       client.query(sql2)
@@ -77,10 +77,10 @@ module.exports = function rotateGreenClockwise(str) {
                               let sql = `UPDATE blue SET positions='${travelLogArray[1][1].positions.split(',')[0]},${travelLogArray[1][1].positions.split(',')[1]},${travelLogArray[3][2].positions.split(',')[1]}' WHERE id=2;`;
                               client.query(sql)
                                 .then(() => {
-                                  let sql = `UPDATE blue SET positions='${travelLogArray[1][2].positions.split(',')[0]},${travelLogArray[1][2].positions.split(',')[1]},${travelLogArray[3][0].positions.split(',')[2]}' WHERE id=3;`;
+                                  let sql = `UPDATE blue SET positions='${travelLogArray[1][2].positions.split(',')[0]},${travelLogArray[1][2].positions.split(',')[1]},${travelLogArray[3][2].positions.split(',')[0]}' WHERE id=3;`;
                                   client.query(sql)
                                     .then(() => {
-                                      let sql = `UPDATE yellow SET positions='${travelLogArray[2][0].positions.split(',')[0]},${travelLogArray[2][0].positions.split(',')[1]},${travelLogArray[2][0].positions.split(',')[2]}' WHERE id=3;`;
+                                      let sql = `UPDATE yellow SET positions='${travelLogArray[2][0].positions.split(',')[0]},${travelLogArray[2][1].positions.split(',')[0]},${travelLogArray[2][2].positions.split(',')[0]}' WHERE id=3;`;
                                       client.query(sql)
                                         .then(() => {
                                           let sql = `UPDATE green SET positions='${travelLogArray[0][0].positions.split(',')[2]},${travelLogArray[2][0].positions.split(',')[1]},${travelLogArray[2][0].positions.split(',')[2]}' WHERE id=1;`;
