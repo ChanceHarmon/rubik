@@ -21,12 +21,16 @@ app.use(express.urlencoded({ extended: true }))
 
 //import functions from util files
 const reset_cube = require('./util/reset/resetCube');
+
+const random_one = require('./util/randomCubePresets/presetOne')
+
 const rotateWhiteClockwise = require('./util/rotateClockwise/white');
 const rotateGreenClockwise = require('./util/rotateClockwise/green');
 const rotateOrangeClockwise = require('./util/rotateClockwise/orange');
 const rotateBlueClockwise = require('./util/rotateClockwise/blue');
 const rotateRedClockwise = require('./util/rotateClockwise/red');
 const rotateYellowClockwise = require('./util/rotateClockwise/yellow');
+
 const rotateWhiteCounterClockwise = require('./util/rotateCounter/white');
 const rotateGreenCounterClockwise = require('./util/rotateCounter/green');
 const rotateOrangeCounterClockwise = require('./util/rotateCounter/orange');
@@ -38,6 +42,7 @@ const rotateYellowCounterClockwise = require('./util/rotateCounter/yellow');
 
 app.get('/', getCube);
 app.get('/reset', reset_cube);
+app.get('/randomCube', random_one);
 app.post('/user_action', formInput);
 
 //The rest of it...
