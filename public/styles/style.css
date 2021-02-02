@@ -61,10 +61,15 @@
   grid-column: 3/4;
   grid-row: 1/2
 }
-#toggle-text{
+#pick-random{
   grid-column: 3/4;
   grid-row: 1/2;
   margin-top: 3em
+}
+#toggle-text{
+  grid-column: 3/4;
+  grid-row: 1/2;
+  margin-top: 6em
 }
 
 .item_layout{
