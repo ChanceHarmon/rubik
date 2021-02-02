@@ -69,6 +69,7 @@ module.exports = function rotateRedClockwise(str) {
                         })
                       }
                     }).then(() => {
+                      console.log('inside of red clock', travelLogArray)
                       let sql = `UPDATE white SET positions='${travelLogArray[1][0].positions.split(',')[2]},${travelLogArray[1][1].positions.split(',')[2]},${travelLogArray[1][2].positions.split(',')[2]}' WHERE id=3;`;
                       client.query(sql)
                         .then(() => {
