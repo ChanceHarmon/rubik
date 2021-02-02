@@ -40,14 +40,14 @@ const rotateYellowCounterClockwise = require('./util/rotateCounter/yellow');
 
 //Routes
 
-app.get('/', getCube);
-app.get('/reset', reset_cube);
-app.get('/randomCube', random_one);
-app.post('/user_action', formInput);
+app.get('/', getCube);  //Calls whatever is the current saved cube among all of the different color tables
+app.get('/reset', reset_cube);  //Calls the imported function, that resets the cube to solved, then redirects to / route
+app.get('/randomCube', random_one);  //Calls the imported function, currently produces one random cube set, then redirects to / route
+app.post('/user_action', formInput);//  Takes in the user selection based on the radio selection
 
 //The rest of it...
 
-
+//Renders Home page, basic select everything and send it to the front to make look pretty.
 function getCube(request, response) {
   let sql = `SELECT * FROM holy_cube;`;
   client.query(sql)
@@ -65,13 +65,16 @@ function getCube(request, response) {
     }).catch('error', error => console.error(error))
 }
 
-
+//These belove two functions I have had as tools for a long time. They work if you pay atteention to what is called in the await calls in the formInput function
 function delay() {
   return new Promise(resolve => setTimeout(resolve, 500));
 }
 async function delayedLog() {
   await delay();
 }
+
+
+//Handles the user input, and calls the correct sequence of how to rotate the cube and update all of the tables. Looks like a lot but is really just a repeat of the same idea 12 times, just variable names change.
 
 async function formInput(request, response) {
 
@@ -146,5 +149,3 @@ client.connect()
       console.log(`${PORT} is rockin...`)
     })
   })
-
-  //TODO timer for promise is not slow enough for heroku, probably should figure out why the hell i need it any way, but change it be longer next time
