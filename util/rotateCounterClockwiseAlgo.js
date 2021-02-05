@@ -10,7 +10,7 @@ module.exports = function rotateCounter(matrix) {
       matrix[j][i] = pivot;
     }
   }
-  //Step Two: Reverse the rows from the middle out.
+  //Step Two: Reverse the columns from top with bottom moving inward per column.
   let i = 0;
   let j = matrix.length - 1;
   let count = 0;

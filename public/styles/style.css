@@ -2,8 +2,14 @@
   box-sizing: border-box;
 }
 
+body{
+  width:100vw;
+  height:100vh
+}
+
 #mainCube{
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -98,32 +104,4 @@
 }
 .red{
   background-color: red;
-}
-
-.top_left{
-
-}
-.top_center{
-
-}
-.top_right{
-
-}
-.middle_left{
-
-}
-.middle_center{
-
-}
-.middle_right{
-
-}
-.bottom_left{
-
-}
-.bottom_center{
-
-}
-.bottom_right{
-
 }

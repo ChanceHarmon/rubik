@@ -7,7 +7,6 @@ client.on('error', err => console.error(err));
 client.connect()
 
 const rotate = require('../../util/rotateClockwiseAlgo');
-//based off of redd at the start
 module.exports = function rotateYellowClockwise(str) {
 
   let travelLog = {};
@@ -70,7 +69,7 @@ module.exports = function rotateYellowClockwise(str) {
                       }
                     }).then(() => {
                       console.log('in yellow clock', travelLogArray)
-                      let sql = `UPDATE red SET positions='${travelLogArray[1][2].positions.split(',')[2]},${travelLogArray[1][1].positions.split(',')[2]},${travelLogArray[1][0].positions.split(',')[2]}' WHERE id=3;`;
+                      let sql = `UPDATE red SET positions='${travelLogArray[1][2].positions.split(',')[0]},${travelLogArray[1][2].positions.split(',')[1]},${travelLogArray[1][2].positions.split(',')[2]}' WHERE id=3;`;
                       client.query(sql)
                         .then(() => {
                           let sql = `UPDATE green SET positions='${travelLogArray[3][2].positions.split(',')[0]},${travelLogArray[3][2].positions.split(',')[1]},${travelLogArray[3][2].positions.split(',')[2]}' WHERE id=3;`;
@@ -79,7 +78,7 @@ module.exports = function rotateYellowClockwise(str) {
                               let sql = `UPDATE blue SET positions='${travelLogArray[0][2].positions.split(',')[0]},${travelLogArray[0][2].positions.split(',')[1]},${travelLogArray[0][2].positions.split(',')[2]}' WHERE id=3;`;
                               client.query(sql)
                                 .then(() => {
-                                  let sql = `UPDATE orange SET positions='${travelLogArray[2][0].positions.split(',')[0]},${travelLogArray[2][1].positions.split(',')[0]},${travelLogArray[2][2].positions.split(',')[0]}' WHERE id=3;`;
+                                  let sql = `UPDATE orange SET positions='${travelLogArray[2][2].positions.split(',')[0]},${travelLogArray[2][2].positions.split(',')[1]},${travelLogArray[2][2].positions.split(',')[2]}' WHERE id=3;`;
                                   client.query(sql)
                                     .then(() => {
                                       return travelLog;

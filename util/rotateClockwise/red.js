@@ -70,7 +70,7 @@ module.exports = function rotateRedClockwise(str) {
                       }
                     }).then(() => {
                       console.log('inside of red clock', travelLogArray)
-                      let sql = `UPDATE white SET positions='${travelLogArray[1][0].positions.split(',')[2]},${travelLogArray[1][1].positions.split(',')[2]},${travelLogArray[1][2].positions.split(',')[2]}' WHERE id=3;`;
+                      let sql = `UPDATE white SET positions='${travelLogArray[1][2].positions.split(',')[2]},${travelLogArray[1][1].positions.split(',')[2]},${travelLogArray[1][0].positions.split(',')[2]}' WHERE id=3;`;
                       client.query(sql)
                         .then(() => {
                           let sql = `UPDATE green SET positions='${travelLogArray[1][0].positions.split(',')[0]},${travelLogArray[1][0].positions.split(',')[1]},${travelLogArray[3][0].positions.split(',')[0]}' WHERE id=1;`;
@@ -92,7 +92,7 @@ module.exports = function rotateRedClockwise(str) {
                                       let sql = `UPDATE blue SET positions='${travelLogArray[0][2].positions.split(',')[2]},${travelLogArray[2][2].positions.split(',')[1]},${travelLogArray[2][2].positions.split(',')[2]}' WHERE id=3;`;
                                       client.query(sql)
                                         .then(() => {
-                                          let sql = `UPDATE yellow SET positions='${travelLogArray[2][0].positions.split(',')[0]},${travelLogArray[2][1].positions.split(',')[0]},${travelLogArray[2][2].positions.split(',')[0]}' WHERE id=1;`;
+                                          let sql = `UPDATE yellow SET positions='${travelLogArray[2][2].positions.split(',')[0]},${travelLogArray[2][1].positions.split(',')[0]},${travelLogArray[2][0].positions.split(',')[0]}' WHERE id=1;`;
                                           client.query(sql)
                                             .then(() => {
                                               return travelLog;

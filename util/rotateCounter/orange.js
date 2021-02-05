@@ -1,7 +1,4 @@
 
-
-
-
 'use strict';
 
 require('dotenv').config();
@@ -10,9 +7,9 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', err => console.error(err));
 client.connect()
 
-const rotate = require('../../util/rotateClockwiseAlgo');
+const rotateCounter = require('../../util/rotateCounterClockwiseAlgo');
 
-module.exports = function rotateOrangeClockwise(str) {
+module.exports = function rotateOrangeCounterClockwise(str) {
   let travelLog = {};
   let faceValue;
   let equationArray = ['orange', 'green', 'white', 'blue', 'red', 'yellow'];
@@ -36,7 +33,7 @@ module.exports = function rotateOrangeClockwise(str) {
     .then(results => {
       let presort = results.rows.sort((a, b) => a.id - b.id)
       let faceArray = presort.map(item => item.positions.split(','));
-      rotate(faceArray);
+      rotateCounter(faceArray);
       travelLog.face_array = faceArray;
     }).then(() => {
       client.query(sql2)

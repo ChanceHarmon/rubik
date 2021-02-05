@@ -6,9 +6,9 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', err => console.error(err));
 client.connect()
 
-const rotateCounter = require('../../util/rotateCounterClockwiseAlgo');
+const rotate = require('../../util/rotateClockwiseAlgo');
 
-module.exports = function rotateGreenCounterClockwise(str) {
+module.exports = function rotateGreenClockwise(str) {
 
   let travelLog = {};
   let faceValue;
@@ -33,7 +33,7 @@ module.exports = function rotateGreenCounterClockwise(str) {
     .then(results => {
       let presort = results.rows.sort((a, b) => a.id - b.id)
       let faceArray = presort.map(item => item.positions.split(','));
-      rotateCounter(faceArray);
+      rotate(faceArray);
       travelLog.face_array = faceArray;
     }).then(() => {
       client.query(sql2)
