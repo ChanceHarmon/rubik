@@ -115,13 +115,13 @@ function testValue(callback, arr, obj) {
     let innerArray = parsedData[i][0].split(',');
     for (let j = 0; j < innerArray.length; j++) {
       if (obj.hasOwnProperty(innerArray[j]) && obj[innerArray[j]] === 0) {
-        // console.log('changing to 1')
+        //console.log('changing to 1')
         obj[innerArray[j]] = 1;
       } else if (obj.hasOwnProperty(innerArray[j]) && obj[innerArray[j]] !== 0) {
         // console.log('changing to -1')
         obj[innerArray[j]] = -1;
       }
-      //console.log(obj)
+      console.log(obj)
     }
   }
   for (let i in obj) {
